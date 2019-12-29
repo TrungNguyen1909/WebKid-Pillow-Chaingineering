@@ -45,15 +45,16 @@ write:
     cmp rax, -1
     jne dlopen
     exit 3
-dlopen:
-    ; dlopen (path, 0)
+close:
     pop rdi
     xor rax,rax
-    mov rax,0x2000006
+    mov rax,0x2000006 ; SYS_close
     syscall
+dlopen:
+    ; dlopen (path, 0)
     mov rdi, rsp ; path
     xor rsi, rsi
-    mov rax, 0x4444444444444444
+    mov rax, 0x4444444444444444 ; to be replaced with address of dlopen
     call rax
     test rax, rax
     jnz success
