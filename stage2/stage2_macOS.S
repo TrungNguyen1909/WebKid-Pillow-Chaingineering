@@ -43,7 +43,7 @@ write:
     mov rax, 0x2000004 ; SYS_write
     syscall
     cmp rax, -1
-    jne dlopen
+    jne close
     exit 3
 close:
     pop rdi
